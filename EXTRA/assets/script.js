@@ -21,9 +21,9 @@ var MainUser = /** @class */ (function () {
     return MainUser;
 }());
 //Istanze classi utenti
-var firstUser = new MainUser(50);
-var secondUser = new MainUser(20);
-var ThirdUser = new MainUser(70);
+var firstUser = new MainUser(10);
+// let secondUser = new MainUser (20)
+// let ThirdUser = new MainUser (70)
 //DOM
 window.onload = function () {
     var chargeDiv = document.querySelector(".chargeDiv");
@@ -35,6 +35,13 @@ window.onload = function () {
     var startTime;
     var callList = document.querySelector(".callList");
     var calling = document.createElement("li");
+    var cardBody = document.querySelector(".card-body");
+    var chargeh6 = document.querySelector(".charge");
+    var cardTitle = document.querySelector(".card-title");
+    var callingDiv = document.createElement("div");
+    callingDiv.className = "calling-div d-flex justify-content-center align-items-center flex-column d-none";
+    callingDiv.innerHTML = "<button class=\"btn btn-secondary rounded-circle\"><i class=\"bi bi-person-circle\"></i></button><p>Sto Chiamando...</p>";
+    cardBody.appendChild(callingDiv);
     startCall.addEventListener("click", function () {
         startTime = new Date().getTime();
         calling.id = "calling";
@@ -42,17 +49,32 @@ window.onload = function () {
         calling.classList.add("d-block");
         calling.classList.remove("d-none");
         callList.appendChild(calling);
+        // chargeh6.classList.remove("d-block")
+        // cardTitle.classList.remove("d-block")
+        // chargeDiv.classList.remove("d-block")
+        // chargeh6.classList.add("d-none")
+        // cardTitle.classList.add("d-none")
+        // chargeDiv.classList.add("d-none")
+        // callingDiv.classList.add("d-flex")
+        // callingDiv.classList.remove("d-none")
     });
     var endCall = document.querySelector(".end-call");
     var endTime;
     endCall.addEventListener("click", function () {
-        // firstUser.call(1)
         endTime = new Date().getTime();
         var timeDiff = endTime - startTime;
         timeDiff /= 1000;
         var minutes = Math.round(timeDiff / 60);
         firstUser.call(minutes);
         console.log(minutes);
+        // chargeh6.classList.remove("d-none")
+        // cardTitle.classList.remove("d-none")
+        // chargeDiv.classList.remove("d-none")
+        // chargeh6.classList.add("d-block")
+        // cardTitle.classList.add("d-block")
+        // chargeDiv.classList.add("d-block")
+        // callingDiv.classList.add("d-none")
+        // callingDiv.classList.remove("d-flex")
         var callList = document.querySelector(".callList");
         var calling = document.getElementById("calling");
         calling.classList.add("d-none");

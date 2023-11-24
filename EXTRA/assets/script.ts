@@ -32,9 +32,9 @@ class MainUser implements SmartphonePlus{
 }
 
 //Istanze classi utenti
-let firstUser = new MainUser (50)
-let secondUser = new MainUser (20)
-let ThirdUser = new MainUser (70)
+let firstUser = new MainUser (10)
+// let secondUser = new MainUser (20)
+// let ThirdUser = new MainUser (70)
 
 //DOM
 window.onload = () => {
@@ -48,6 +48,14 @@ window.onload = () => {
     let startTime: number
     const callList = document.querySelector(".callList") as HTMLUListElement
     let calling = document.createElement("li") as HTMLLIElement
+    const cardBody = document.querySelector(".card-body") as HTMLDivElement
+    const chargeh6 = document.querySelector(".charge") as HTMLTitleElement
+    const cardTitle = document.querySelector(".card-title") as HTMLTitleElement
+    const callingDiv = document.createElement("div") as HTMLDivElement
+    callingDiv.className = "calling-div d-flex justify-content-center align-items-center flex-column d-none"
+    callingDiv.innerHTML = `<button class="btn btn-secondary rounded-circle"><i class="bi bi-person-circle"></i></button><p>Sto Chiamando...</p>`
+    cardBody.appendChild(callingDiv)
+    
     startCall.addEventListener("click", function(){
         startTime = new Date().getTime()
         calling.id = "calling"
@@ -55,11 +63,21 @@ window.onload = () => {
         calling.classList.add("d-block")
         calling.classList.remove("d-none")
         callList.appendChild(calling)
+
+        // chargeh6.classList.remove("d-block")
+        // cardTitle.classList.remove("d-block")
+        // chargeDiv.classList.remove("d-block")
+        // chargeh6.classList.add("d-none")
+        // cardTitle.classList.add("d-none")
+        // chargeDiv.classList.add("d-none")
+
+        // callingDiv.classList.add("d-flex")
+        // callingDiv.classList.remove("d-none")
+        
     })
     const endCall = document.querySelector(".end-call") as HTMLButtonElement
     let endTime: number
     endCall.addEventListener("click", function(){
-        // firstUser.call(1)
         endTime = new Date().getTime()
         let timeDiff = endTime - startTime
         timeDiff /= 1000
@@ -67,6 +85,15 @@ window.onload = () => {
 
         firstUser.call(minutes)
         console.log(minutes)
+
+        // chargeh6.classList.remove("d-none")
+        // cardTitle.classList.remove("d-none")
+        // chargeDiv.classList.remove("d-none")
+        // chargeh6.classList.add("d-block")
+        // cardTitle.classList.add("d-block")
+        // chargeDiv.classList.add("d-block")
+        // callingDiv.classList.add("d-none")
+        // callingDiv.classList.remove("d-flex")
 
         const callList = document.querySelector(".callList") as HTMLUListElement
         let calling = document.getElementById("calling") as HTMLLIElement
