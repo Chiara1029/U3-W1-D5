@@ -45,12 +45,35 @@ window.onload = () => {
     chargeDiv.appendChild(charge)
 
     const startCall = document.querySelector(".start-call") as HTMLButtonElement
+    let startTime: number
+    const callList = document.querySelector(".callList") as HTMLUListElement
+    let calling = document.createElement("li") as HTMLLIElement
     startCall.addEventListener("click", function(){
-        firstUser.call(1)
+        startTime = new Date().getTime()
+        calling.id = "calling"
+        calling.innerText = "Sto chiamando..."
+        calling.classList.add("d-block")
+        calling.classList.remove("d-none")
+        callList.appendChild(calling)
+    })
+    const endCall = document.querySelector(".end-call") as HTMLButtonElement
+    let endTime: number
+    endCall.addEventListener("click", function(){
+        // firstUser.call(1)
+        endTime = new Date().getTime()
+        let timeDiff = endTime - startTime
+        timeDiff /= 1000
+        let minutes = Math.round(timeDiff / 60)
+
+        firstUser.call(minutes)
+        console.log(minutes)
 
         const callList = document.querySelector(".callList") as HTMLUListElement
+        let calling = document.getElementById("calling") as HTMLLIElement
+        calling.classList.add("d-none")
+        calling.classList.remove("d-block")
         let calls = document.createElement("li") as HTMLLIElement
-        calls.innerText = "Chiamata " + `${firstUser.numberOfCalls}`
+        calls.innerText = "Chiamata " + `${firstUser.numberOfCalls}` + " durata: " + `${minutes}` + " minuti."
         callList.appendChild(calls)
         charge.innerText = `${firstUser.recharge}` + "€"
     })

@@ -32,11 +32,33 @@ window.onload = function () {
     charge.innerText = "".concat(newCharge) + "€";
     chargeDiv.appendChild(charge);
     var startCall = document.querySelector(".start-call");
+    var startTime;
+    var callList = document.querySelector(".callList");
+    var calling = document.createElement("li");
     startCall.addEventListener("click", function () {
-        firstUser.call(1);
+        startTime = new Date().getTime();
+        calling.id = "calling";
+        calling.innerText = "Sto chiamando...";
+        calling.classList.add("d-block");
+        calling.classList.remove("d-none");
+        callList.appendChild(calling);
+    });
+    var endCall = document.querySelector(".end-call");
+    var endTime;
+    endCall.addEventListener("click", function () {
+        // firstUser.call(1)
+        endTime = new Date().getTime();
+        var timeDiff = endTime - startTime;
+        timeDiff /= 1000;
+        var minutes = Math.round(timeDiff / 60);
+        firstUser.call(minutes);
+        console.log(minutes);
         var callList = document.querySelector(".callList");
+        var calling = document.getElementById("calling");
+        calling.classList.add("d-none");
+        calling.classList.remove("d-block");
         var calls = document.createElement("li");
-        calls.innerText = "Chiamata " + "".concat(firstUser.numberOfCalls);
+        calls.innerText = "Chiamata " + "".concat(firstUser.numberOfCalls) + " durata: " + "".concat(minutes) + " minuti.";
         callList.appendChild(calls);
         charge.innerText = "".concat(firstUser.recharge) + "€";
     });
