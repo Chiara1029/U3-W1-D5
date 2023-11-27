@@ -33,30 +33,26 @@ window.onload = function () {
     chargeDiv.appendChild(charge);
     var startCall = document.querySelector(".start-call");
     var startTime;
-    var callList = document.querySelector(".callList");
-    var calling = document.createElement("li");
+    var callList = document.querySelector(".calls-list");
     var cardBody = document.querySelector(".card-body");
     var chargeh6 = document.querySelector(".charge");
     var cardTitle = document.querySelector(".card-title");
     var callingDiv = document.createElement("div");
     callingDiv.className = "calling-div d-flex justify-content-center align-items-center flex-column d-none";
-    callingDiv.innerHTML = "<button class=\"btn btn-secondary rounded-circle\"><i class=\"bi bi-person-circle\"></i></button><p>Sto Chiamando...</p>";
+    callingDiv.innerHTML = "<img\n    src=\"https://emedia1.nhs.wales/HEIW2/cache/file/F4C33EF0-69EE-4445-94018B01ADCF6FD4_medium.png\"\n    alt=\"\"\n    class=\"avatar rounded-circle\"\n  /><p class=\"mt-3\">Sto chiamando...</p>";
     cardBody.appendChild(callingDiv);
     startCall.addEventListener("click", function () {
         startTime = new Date().getTime();
-        calling.id = "calling";
-        calling.innerText = "Sto chiamando...";
-        calling.classList.add("d-block");
-        calling.classList.remove("d-none");
-        callList.appendChild(calling);
-        // chargeh6.classList.remove("d-block")
-        // cardTitle.classList.remove("d-block")
-        // chargeDiv.classList.remove("d-block")
-        // chargeh6.classList.add("d-none")
-        // cardTitle.classList.add("d-none")
-        // chargeDiv.classList.add("d-none")
-        // callingDiv.classList.add("d-flex")
-        // callingDiv.classList.remove("d-none")
+        chargeh6.classList.remove("d-block");
+        cardTitle.classList.remove("d-block");
+        chargeDiv.classList.remove("d-block");
+        chargeh6.classList.add("d-none");
+        cardTitle.classList.add("d-none");
+        chargeDiv.classList.add("d-none");
+        callingDiv.classList.add("d-flex");
+        callingDiv.classList.remove("d-none");
+        callList.classList.remove("d-block");
+        callList.classList.add("d-none");
     });
     var endCall = document.querySelector(".end-call");
     var endTime;
@@ -67,20 +63,18 @@ window.onload = function () {
         var minutes = Math.round(timeDiff / 60);
         firstUser.call(minutes);
         console.log(minutes);
-        // chargeh6.classList.remove("d-none")
-        // cardTitle.classList.remove("d-none")
-        // chargeDiv.classList.remove("d-none")
-        // chargeh6.classList.add("d-block")
-        // cardTitle.classList.add("d-block")
-        // chargeDiv.classList.add("d-block")
-        // callingDiv.classList.add("d-none")
-        // callingDiv.classList.remove("d-flex")
-        var callList = document.querySelector(".callList");
-        var calling = document.getElementById("calling");
-        calling.classList.add("d-none");
-        calling.classList.remove("d-block");
+        chargeh6.classList.remove("d-none");
+        cardTitle.classList.remove("d-none");
+        chargeDiv.classList.remove("d-none");
+        chargeh6.classList.add("d-block");
+        cardTitle.classList.add("d-block");
+        chargeDiv.classList.add("d-block");
+        callingDiv.classList.add("d-none");
+        callingDiv.classList.remove("d-flex");
+        callList.classList.remove("d-none");
+        callList.classList.add("d-block");
         var calls = document.createElement("li");
-        calls.innerText = "Chiamata " + "".concat(firstUser.numberOfCalls) + " durata: " + "".concat(minutes) + " minuti.";
+        calls.innerText = "Chiamata " + "".concat(firstUser.numberOfCalls) + " - durata: " + "".concat(minutes) + " minuti.";
         callList.appendChild(calls);
         charge.innerText = "".concat(firstUser.recharge) + "€";
     });

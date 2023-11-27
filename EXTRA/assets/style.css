@@ -22,3 +22,8 @@
     height: 20rem;
     overflow-y: auto;
 }
+
+.avatar{
+    margin-top: 2rem;
+    width: 80px;
+}
